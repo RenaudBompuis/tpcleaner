@@ -3,7 +3,7 @@ tpcleaner
 
 ### Purpose
 
-Clean thumbnail files that were not deleted by [ThumbPlus][1], an image database software from [Cerious Software Inc][2].
+Delete external thumbnail files that were not removed by [ThumbPlus][1], an image database software from [Cerious Software Inc][2].
 
 ### The problem
 
@@ -16,7 +16,7 @@ This means that thumbnails will keep accumulating and the space they use will ne
 
 ### The solution
 
-`tpcleaner.exe` is a small utility that will delete thumbnails whose records were removed from the database.  
+`tpcleaner.exe` is a command line utility that will delete thumbnails whose records were removed from the database.
 
 Just save `tpcleaner.exe` in the same folder as your database file, open a command prompt:
 
@@ -31,9 +31,23 @@ For instance:
 
     Thumbs.tpdb8_files\000\02e\4fd.tn
 
-A description of how the path is derived from the unique thumbnail record ID available on the forum.
+A description of [how the path is derived from the unique thumbnail record ID available on the forum][3].
 
 `tpcleaner` just scans the `Thumbnails` table in the database and search for gaps in its ID and delete any thumbnail files whose unique ID fits in these gaps. 
 
+### Limitations
+
+* For now, `tpcleaner` only works with ThumbPlus Access databases (the default).   
+  If there is demand for it, I will try to add SQLite support.
+* Should work on WinXP but not tested.
+* Relies on _Microsoft DAO 3.6 Object Library_ COM component, which should already be installed on your computer.
+
+### Disclaimer
+
+I'm just releasing this in the hope it will be useful to someone else. I make no guarantees that it will work for you, like, at all.  
+Don't be all mad at me if it corrups our computer, make a hole in your desk and burns down your house. It certainly shouldn't, but hey, this is software made by someone who shares 95% of his DNA with chimpanzees, so who knows.
+
+
   [1]:http://www.cerious.com/thumbnails.shtml
   [2]:http://www.cerious.com/
+  [3]:http://forums.cerious.com/forum/index.php?id=539
