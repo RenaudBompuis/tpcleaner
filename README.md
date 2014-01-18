@@ -3,15 +3,15 @@ tpcleaner
 
 ### Purpose
 
-Delete external thumbnail files that were not removed by [ThumbPlus][1], an image database software from [Cerious Software Inc][2].
+Delete external thumbnail files that were not removed by [ThumbsPlus][1], an image database software from [Cerious Software Inc][2].
 
 ### The problem
 
-ThumbPlus uses an Access database by default (with a renamed extension `.tpdb8` instead of `.mdb`) and will save thumbnails within the database.
+ThumbsPlus uses an Access database by default (with a renamed extension `.tpdb8` instead of `.mdb`) and will save thumbnails within the database.
   
-However, to avoid reaching the 2GB size limit for an Access database, you can make ThumbPlus save the thumbnail files in a collection of sub-directories that reside in the same folder as the database.
+However, to avoid reaching the 2GB size limit for an Access database, you can make ThumbsPlus save the thumbnail files in a collection of sub-directories that reside in the same folder as the database.
 
-Unfortunately, ThumbPlus version 9 SP1 and below have a bug that prevent the thumbnail files from being deleted when they should.  
+Unfortunately, ThumbsPlus version 9 SP1 and below have a bug that prevent the thumbnail files from being deleted when they should.  
 This means that thumbnails will keep accumulating and the space they use will never be freed.
 
 ### The solution
@@ -37,7 +37,7 @@ A description of [how the path is derived from the unique thumbnail record ID av
 
 ### Limitations
 
-* For now, `tpcleaner` only works with ThumbPlus Access databases (the default).   
+* For now, `tpcleaner` only works with ThumbsPlus MS Access databases (the default).   
   If there is demand for it, I will try to add SQLite support.
 * Should work on WinXP but not tested.
 * Relies on _Microsoft DAO 3.6 Object Library_ COM component, which should already be installed on your computer.
