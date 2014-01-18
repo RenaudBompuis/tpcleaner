@@ -34,7 +34,7 @@ namespace tpcleaner
 
             // Open the database
             var dbEngine = new DAO.DBEngine();
-            var db = dbEngine.OpenDatabase(args[0]);
+            var db = dbEngine.OpenDatabase(dbPath);
             var rs = db.OpenRecordset("SELECT idThumb FROM Thumbnail ORDER BY idThumb ASC", DAO.RecordsetTypeEnum.dbOpenForwardOnly);
 
             // Go through each Thumb ID and if there are gaps, 
@@ -67,8 +67,9 @@ namespace tpcleaner
                 Console.WriteLine("No orphaned thumbnails were found, database is clean.");
             }
         }
+
         private static void DeleteThumb(int thumbId) {
-            // Claculate the thumb directory based on its ID
+            // Calculate the thumb directory based on its ID
             // See http://forums.cerious.com/forum/index.php?id=539
             int folderL1 = thumbId / (1627 * 1627);
             int folderL2 = (thumbId - (folderL1 * (1627 * 1627))) / 1627;
@@ -80,24 +81,24 @@ namespace tpcleaner
                 countOfDeleted++;
             }
         }
+
+
         // Pinvoke for API function for Getting the Drive free space before and after we delete the thumbnails
         // Take from http://stackoverflow.com/a/13578940/3811
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetDiskFreeSpaceEx(string lpDirectoryName,
-        out ulong lpFreeBytesAvailable,
-        out ulong lpTotalNumberOfBytes,
-        out ulong lpTotalNumberOfFreeBytes);
+                                                     out ulong lpFreeBytesAvailable,
+                                                     out ulong lpTotalNumberOfBytes,
+                                                     out ulong lpTotalNumberOfFreeBytes);
 
         public static bool DriveFreeBytes(string folderName, out ulong freespace) {
             freespace = 0;
-            if (string.IsNullOrEmpty(folderName)) {
+            if (string.IsNullOrEmpty(folderName))
                 throw new ArgumentNullException("folderName");
-            }
 
-            if (!folderName.EndsWith("\\")) {
+            if (!folderName.EndsWith("\\")) 
                 folderName += '\\';
-            }
 
             ulong free = 0, dummy1 = 0, dummy2 = 0;
 
